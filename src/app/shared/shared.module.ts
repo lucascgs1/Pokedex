@@ -1,3 +1,6 @@
+//page
+import { SideMenuComponent } from './component/side-menu/side-menu.component';
+
 //module
 import { MaterialModule } from './material-module/material-module.module';
 
@@ -5,11 +8,10 @@ import { MaterialModule } from './material-module/material-module.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    SideMenuComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   exports: [
     MaterialModule,
-    HeaderComponent,
+    SideMenuComponent,
   ]
 })
 

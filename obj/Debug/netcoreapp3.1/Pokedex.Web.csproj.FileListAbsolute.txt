@@ -1,0 +1,13 @@
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.exe
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.deps.json
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.runtimeconfig.json
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.runtimeconfig.dev.json
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.dll
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.pdb
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.csprojAssemblyReference.cache
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.AssemblyInfoInputs.cache
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.AssemblyInfo.cs
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.csproj.CoreCompileInputs.cache
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.dll
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.pdb
+C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.genruntimeconfig.cache

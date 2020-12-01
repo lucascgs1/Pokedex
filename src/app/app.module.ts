@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 // module
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 //package
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    CoreModule,
     HttpClientModule,
     FormsModule
   ],
