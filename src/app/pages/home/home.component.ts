@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
   public pagina: number = 1;
   public qtdItem: number = 20;
 
-
-
   constructor(
     private pokemonService: PokemonService
-  ) { }
+  ) {
+    this.load()
+  }
 
   ngOnInit(): void {
     
@@ -35,5 +35,13 @@ export class HomeComponent implements OnInit {
 
 
 
+  getPokemons() {
+    this.pokemonService.getPokemons(this.pagina, this.qtdItem)
+      .subscribe(
+        (result) => {
+          console.log(result);
+        }
+      );
 
+  }
 }

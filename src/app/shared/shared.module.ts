@@ -2,6 +2,7 @@
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
 
 //module
+import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { MaterialModule } from './material-module/material-module.module';
 
 //package
@@ -16,9 +17,11 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule,
+    BootstrapModule,
     RouterModule,
   ],
   exports: [
+    BootstrapModule,
     MaterialModule,
     SideMenuComponent,
   ]
