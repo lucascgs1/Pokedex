@@ -1,12 +1,16 @@
 //model
 import { Paginacao } from '../model/paginacao';
 
+//module
+import { environment } from '../../../environments/environment';
+
 //package
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs/internal/observable/throwError';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,19 +27,17 @@ export class PokemonService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  // Obtem todos os carros
+  // Obtem todos os pokemons
   getPokemons(page: number = 0, limit: number = 0): Observable<Paginacao> {
 
     var url = this.url;
 
     console.log(page, limit);
 
-    if (limit > 0) {
-      url = url + '?limit=' + limit;
-    }
     if (limit > 0 && page > 0) {
-      url = url + '?offset=' + page * limit;
+      url = url + '?offset=' + ((page * limit) - limit) + '&limit=' + limit;
     }
+    console.log(url);
 
     return this.httpClient.get<Paginacao>(url)
       .pipe(
@@ -43,17 +45,20 @@ export class PokemonService {
         catchError(this.handleError))
   }
 
-  // Obtem um carro pelo id
-  //getCarById(id: number): Observable<Car> {
-  //  return this.httpClient.get<Car>(this.url + '/' + id)
-  //    .pipe(
-  //      retry(2),
-  //      catchError(this.handleError)
-  //    )
-  //}
+  //detalhes do pokemon
+  getPokemonDetalhes(): Observable<Paginacao> {
+
+    var url = this.url;
+
+   
+    return this.httpClient.get<Paginacao>(url)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
 
 
-  
+
 
 
 
@@ -70,6 +75,4 @@ export class PokemonService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
-
-
 }

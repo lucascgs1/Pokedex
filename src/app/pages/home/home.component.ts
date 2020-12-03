@@ -1,3 +1,6 @@
+//model
+import { Paginacao } from '../../core/model/paginacao';
+
 //service
 import { PokemonService } from '../../core/service/pokemon.service';
 
@@ -10,38 +13,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public pagina: number = 1;
+  public pagina: number = 3;
   public qtdItem: number = 20;
+  public paginacao: Paginacao = new Paginacao();
+  public list: Array<number> = [1, 2, 3];
 
   constructor(
     private pokemonService: PokemonService
-  ) {
-    this.load()
-  }
+  ) { }
 
   ngOnInit(): void {
-    
+    this.getPokemons(this.pagina);
+
   }
 
 
-  load() {
-    this.pokemonService.getPokemons()
+
+  getPokemons(page: number) {
+    this.pokemonService.getPokemons(page, this.qtdItem)
       .subscribe(
         (result) => {
-          console.log(result);
+          this.paginacao = result;
+
+          console.log(this.paginacao);
         }
       );
   }
 
-
-
-  getPokemons() {
-    this.pokemonService.getPokemons(this.pagina, this.qtdItem)
-      .subscribe(
-        (result) => {
-          console.log(result);
-        }
-      );
-
+  proximaPagina() {
+    this.getPokemons(this.pagina + 1)
   }
+
 }

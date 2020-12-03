@@ -1,18 +1,16 @@
 .example-container {
-  width: 100vw;
+/*  width: 100vw;*/
   height: 100vh;
-  /*margin: 12px;*/
   border: none;
-}
-
-mat-drawer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: var(--pokemon-primary);
+  color: #fff;
 }
 
 mat-drawer-container {
@@ -22,12 +20,3 @@ mat-drawer-container {
     width: 35%;
   }
 } 
-
-mat-sidenav {
-  width: 35%;
-}
-
-.mat-toolbar.mat-primary {
-  background-color: var(--pokemon-primary);
-  color: #fff;
-}
