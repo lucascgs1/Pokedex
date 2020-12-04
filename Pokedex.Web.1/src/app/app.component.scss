@@ -1,0 +1,22 @@
+.example-container {
+/*  width: 100vw;*/
+  height: 100vh;
+  border: none;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: var(--pokemon-primary);
+  color: #fff;
+}
+
+mat-drawer-container {
+  mat-drawer.example-sidenav {
+    background-color: var(--pokemon-primary);
+    color: #fff;
+    width: 35%;
+  }
+} 

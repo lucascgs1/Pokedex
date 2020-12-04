@@ -1,0 +1,45 @@
+<div class="container">
+
+  <!--pokemons-->
+  <div class="row pokemon-list">
+    <div class="col-12 col-sm-6 col-md-3 pokemon-item" *ngFor="let item of paginacao.results;">
+      <div class="row">
+        <div class="col-12 pokemon-name">
+          {{item.name}}
+        </div>
+        <div class="col-12">
+          <div class="row">
+
+          <img src={{item.imgUrl}}/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--paginacao-->
+  <div class="row ">
+    <div class="col-12">
+      <nav aria-label="Page navigation paginacao" class="paginacao">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
