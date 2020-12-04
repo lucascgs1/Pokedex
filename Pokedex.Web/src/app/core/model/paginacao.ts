@@ -15,4 +15,5 @@ export interface Result {
   name: string;
   url: string;
   imgUrl: string;
+  idPokemon: number;
 }

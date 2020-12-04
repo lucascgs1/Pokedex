@@ -12,6 +12,30 @@ nav.paginacao {
   .pokemon-item {
     padding: 1% 4%;
 
+    .pokemon-card {
+      padding: 8px 4px 2px 4px;
+      border: 1px solid #dedede;
+      border-radius: 5px;
+      background-color: #f3f3f3;
+      cursor: pointer;
+
+      .pokemon-img {
+        .id-pokemon {
+          right: 3%;
+          top: 2%;
+          position: absolute;
+          font-size: 1.2em;
+          color: #929292;
+        }
+
+        img {
+          width: 100%;
+          padding: 10%;
+          padding-bottom: 5%;
+        }
+      }
+    }
+
     .pokemon-name {
       background-color: var(--pokemon-primary);
       color: white;
@@ -22,11 +46,13 @@ nav.paginacao {
       text-transform: capitalize;
       border-radius: 6px;
       padding: 5.5% 5%;
-      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
   }
 }
-
 
 .pagination .page-item {
   .page-link {

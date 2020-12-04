@@ -2,17 +2,18 @@
 
   <!--pokemons-->
   <div class="row pokemon-list">
-    <div class="col-12 col-sm-6 col-md-3 pokemon-item" *ngFor="let item of paginacao.results;">
-      <div class="row">
+    <div class="col-12 col-sm-6 col-md-3 pokemon-item" *ngFor="let item of paginacao.results;" (click)="detalhesPokemon(item.idPokemon);">
+      <div class="row pokemon-card">
+        <div class="col-12 pokemon-img">
+          <div class="row">
+            <span class="id-pokemon">
+              #{{item.idPokemon}}
+            </span>
+            <img src={{item.imgUrl}} />
+          </div>
+        </div>
         <div class="col-12 pokemon-name">
           {{item.name}}
-        </div>
-        <div class="col-12">
-          <div class="row">
-
-          <img src={{item.imgUrl}}/>
-          </div>
-
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public pagina: number = 3;
+  public pagina: number = 1;
   public qtdItem: number = 20;
   public paginacao: Paginacao = new Paginacao();
   public list: Array<number> = [1, 2, 3];
@@ -27,25 +27,33 @@ export class HomeComponent implements OnInit {
 
   }
 
-
-
   getPokemons(page: number) {
     this.pokemonService.getPokemons(page, this.qtdItem)
       .subscribe(
         (result) => {
           this.paginacao = result;
-          window.localStorage.setItem("pokemones", JSON.stringify("teste"));
-          console.log(JSON.parse(localStorage.getItem("pokemones") || '{}'));
+
+          for (var i = 0; i < this.paginacao.results.length; i++) {
+            var urlDividida = this.paginacao.results[i].url.split('/');
+
+            this.paginacao.results[i].idPokemon = Number(urlDividida[urlDividida.length - 2]);
+            this.paginacao.results[i].imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/' + this.paginacao.results[i].idPokemon + '.png';
+          }
+
+
           console.log(this.paginacao);
 
 
-          this.paginacao.results[0].imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/' + 1 + '.png';
         }
       );
   }
 
   proximaPagina() {
     this.getPokemons(this.pagina + 1)
+  }
+
+  detalhesPokemon(id: number) {
+    console.log(id);
   }
 
 }
