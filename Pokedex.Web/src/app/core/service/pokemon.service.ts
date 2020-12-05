@@ -1,5 +1,6 @@
 //model
 import { Paginacao } from '../model/paginacao';
+import { Pokemon } from '../model/pokemon';
 
 //module
 import { environment } from '../../../environments/environment';
@@ -50,18 +51,14 @@ export class PokemonService {
   }
 
   //detalhes do pokemon
-  getPokemonDetalhes(): Observable<Paginacao> {
+  getPokemonDetalhes(id: number): Observable<Pokemon> {
 
-    var url = this.url;
-    var retorno =  this.storageService.getData(url) ||
-      this.httpClient.get<Paginacao>(url)
+    var url = this.url + id;
+
+    return this.httpClient.get<Pokemon>(url)
         .pipe(
           retry(2),
           catchError(this.handleError));
-
-    this.storageService.setData(url, retorno)
-
-    return retorno;
   }
 
 
