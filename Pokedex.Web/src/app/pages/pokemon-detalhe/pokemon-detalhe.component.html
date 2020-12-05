@@ -1,1 +1,49 @@
-<p>pokemon-detalhe works!</p>
+<div class="container">
+  <div class="row mb-3 mt-4">
+    <div class="col-12 col-md-2">
+      <button type="button" class="btn btn-outline-secondary btn-block" (click)="voltar()">Voltar</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <div class="avatar" *ngIf="pokemonInfo != undefined">
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <img src="https://pokeres.bastionbot.org/images/pokemon/{{pokemonInfo.id}}.png" />
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="row">
+              <div class="col-12">
+                {{pokemonInfo.name}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="tipo-pokemon {{item.type.name }}" *ngFor="let item of pokemonInfo.types;" (click)="exibirTipoInfo(item.type.url)">
+                {{item.type.name}}
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 status-base">
+            <div class="row mb-4">
+              <div class="col-12 status-titulo">
+                Status base
+              </div>
+            </div>
+            <div class="row" *ngFor="let item of pokemonInfo.stats;">
+              <div class="col-6">
+                {{item.stat.name}}
+              </div>
+              <div class="col-6 status-valor">
+                {{item.base_stat}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

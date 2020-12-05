@@ -6,6 +6,7 @@ import { PokemonService } from '../../core/service/pokemon.service';
 
 //package
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,10 @@ export class HomeComponent implements OnInit {
   public pagina: number = 1;
   public qtdItem: number = 20;
   public paginacao: Paginacao = new Paginacao();
-  public list: Array<number> = [1, 2, 3];
 
   constructor(
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   detalhesPokemon(id: number) {
-    console.log(id);
+    this.router.navigate(["/pokemon-detalhe/" + id])
   }
 
 }
