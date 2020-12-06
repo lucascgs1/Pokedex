@@ -17,6 +17,7 @@ export class Pokemon {
     //this.stats = [];
     //this.types = [];
     this.weight = 0;
+    this.imgUrl = '';
   }
   abilities: Ability[];
   base_experience: number;
@@ -35,6 +36,7 @@ export class Pokemon {
   //stats: Stat[];
   //types: Type[];
   weight: number;
+  imgUrl: string;
 }
 
 export class Ability {

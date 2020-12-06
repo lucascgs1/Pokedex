@@ -23,4 +23,10 @@ export class StorageService {
 
 
 
+  /**
+   * Checks if the a key exists in cache
+   */
+  has(key: string): boolean {
+    return window.localStorage.getItem('cache#' + key) != null ? true : false
+  }
 }
