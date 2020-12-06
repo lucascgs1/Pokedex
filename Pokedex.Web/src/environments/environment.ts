@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   endPoints: {
-    ApiPokemon: 'https://pokeapi.co/api/v2/'
+    Pokemon: 'https://pokeapi.co/api/v2/pokemon/',
+    Pokedex: 'https://pokeapi.co/api/v2/pokedex/'
   }
 };
 

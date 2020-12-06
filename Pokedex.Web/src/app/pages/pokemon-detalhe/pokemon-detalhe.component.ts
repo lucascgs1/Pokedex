@@ -8,6 +8,7 @@ import { PokemonService } from '../../core/service/pokemon.service';
 ///package
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pokemon } from '../../core/model/pokemon'; 
 
 
 @Component({
@@ -30,13 +31,12 @@ export class PokemonDetalheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.activatedRoute.params.subscribe(
       (params) => {
         this.pokemonId = params["id"];
 
 
-        this.getPokemonDetalhes();
+        this.getPokemonDetalhes(this.pokemonId);
         console.log(this.pokemonId);
         //if (this.orcamentoId > 0)
         //  this.getOrcamento(null);
@@ -49,12 +49,14 @@ export class PokemonDetalheComponent implements OnInit {
   }
 
 
-  getPokemonDetalhes() {
-    this.pokemonService.getPokemonDetalhes(this.pokemonId)
+  getPokemonDetalhes(id: number) {
+    console.log(id);
+    this.pokemonService.getPokemonDetalhes(id)
       .subscribe(
         (result) => {
           this.pokemonInfo = result;
           console.log(this.pokemonInfo);
+          this.pokemonInfo.imgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + (this.pokemonInfo.id < 9 ? '00' + this.pokemonInfo.id : (this.pokemonInfo.id < 99 ? '0' + this.pokemonInfo.id : this.pokemonInfo.id )) + '.png'
         }
 
       );
