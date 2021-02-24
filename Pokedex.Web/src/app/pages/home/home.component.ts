@@ -7,18 +7,21 @@ import { PokemonService } from '../../core/service/pokemon.service';
 //package
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pokedex } from '../../core/model/pokedex';
+import { PokedexObj } from '../../core/model/pokedex';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
   public pagina: number = 1;
   public qtdItem: number = 20;
   //public paginacao: Paginacao = new Paginacao();
-  public paginacao: Pokedex = new Pokedex();
+  public paginacao: PokedexObj = new PokedexObj();
+
+
 
   constructor(
     private pokemonService: PokemonService,
@@ -54,7 +57,7 @@ export class HomeComponent implements OnInit {
     this.pokemonService.getAllPokemons()
       .subscribe(
         (result) => {
-
+          console.log(result);
           this.paginacao = result;
 
           for (var i = 0; i < this.paginacao.pokemon_entries.length; i++) {

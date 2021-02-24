@@ -1,4 +1,4 @@
-export class Pokedex {
+export class PokedexObj {
   constructor() {
     this.descriptions = [];
     this.id = 0;

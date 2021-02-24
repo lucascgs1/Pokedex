@@ -1,7 +1,7 @@
 //model
 import { Paginacao } from '../model/paginacao';
 import { Pokemon } from '../model/pokemon';
-import { Pokedex } from '../model/pokedex';
+import { PokedexObj } from '../model/pokedex';
 
 //module
 import { environment } from '../../../environments/environment';
@@ -61,14 +61,14 @@ export class PokemonService {
         catchError(this.handleError))
   }
 
-  getAllPokemons(tipo: number = 1): Observable<Pokedex> {
+  getAllPokemons(tipo: number = 1): Observable<PokedexObj> {
 
     var url = environment.endPoints.Pokedex + tipo;
 
 
     console.log(url);
 
-    return this.httpClient.get<Pokedex>(url)
+    return this.httpClient.get<PokedexObj>(url)
       .pipe(
         retry(2),
         catchError(this.handleError))
