@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "pokemones"
+  "defaultProject": "pokemones",
+  "cli": {
+    "analytics": false
+  }
 }

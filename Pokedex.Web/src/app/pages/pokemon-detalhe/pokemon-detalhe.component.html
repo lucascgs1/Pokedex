@@ -3,6 +3,9 @@
     <div class="col-12 col-md-2">
       <button type="button" class="btn btn-outline-secondary btn-block" (click)="voltar()">Voltar</button>
     </div>
+    <div class="col-12 col-md-2">
+      <button type="button" class="btn btn-outline-primary btn-block" (click)="logResult()">Log result</button>
+    </div>
   </div>
 
 
@@ -11,7 +14,8 @@
       <div class="avatar" *ngIf="pokemonInfo != undefined">
         <div class="row">
           <div class="col-12 col-md-4">
-            <img src={{pokemonInfo.imgUrl}} />
+            <img src={{pokemonInfo.sprites.other.dream_world.front_default}} />
+            <!--<img src={{pokemonInfo.imgUrl}} />-->
           </div>
           <div class="col-12 col-md-4">
             <div class="row">

@@ -15,6 +15,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { retry, catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { saveAs } from 'file-saver';
 
 export class ResultApi {
   constructor() {
@@ -45,16 +46,11 @@ export class PokemonService {
 
   // Obtem todos os pokemons
   getPokemons(page: number = 0, limit: number = 0): Observable<Paginacao> {
-
     var url = environment.endPoints.Pokemon;
-
-    console.log(page, limit);
 
     if (limit > 0 && page > 0) {
       url = url + '?offset=' + ((page * limit) - limit) + '&limit=' + limit;
     }
-    console.log(url);
-
     return this.httpClient.get<Paginacao>(url)
       .pipe(
         retry(2),
@@ -79,44 +75,22 @@ export class PokemonService {
 
     var url = environment.endPoints.Pokemon + id;
 
-    //return this.httpClient.get<Pokemon>(url)
-    //    .pipe(
-    //      retry(2),
-    //      catchError(this.handleError));
-
     console.log(url)
-    //var data = this.storageService.getData(url);
-
-    //if (data != null)
-    //  return new Observable(observer => {
-    //    observer.next(data);
-    //    observer.complete();
-    //  });
-    
 
     return this.httpClient.get<Pokemon>(url)
       .pipe(
         retry(2),
         catchError(this.handleError));
-        //map(message => {
-        //  return this.handleSuccessMessages(message, true, cache, this.getCacheKey(serviceName, url), cacheAge);
-        //  ),
 
-        //map(result =>  return this.handleSuccessMessages(result),
+  }
 
+  getFromUrl(url: string): Observable<any> {
+    console.debug(url)
+    return this.httpClient.get<any>(url)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
 
-
-
-    //return this.httpClient.get<Pokemon>(url, options)
-    //  .pipe
-
-
-    //.map(message => {
-    //  return this.handleSuccessMessages(message, true, cache, this.getCacheKey(serviceName, url), cacheAge);
-    //})
-    //.catch(message => {
-    //  return this.handleError(message, hideNoBusinessErrors);
-    //});
   }
 
 
@@ -136,6 +110,15 @@ export class PokemonService {
 
 
 
+
+
+  generateJson(teste: any): void {
+    const blob = new Blob([JSON.stringify(teste)], { type: 'application/json' });
+
+    debugger;;
+
+    saveAs(blob, 'abc.json');
+  }
 
 
   // Manipulação de erros

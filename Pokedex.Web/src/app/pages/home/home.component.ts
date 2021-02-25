@@ -1,5 +1,6 @@
 //model
 import { Paginacao } from '../../core/model/paginacao';
+import { PokedexObj } from '../../core/model/pokedex';
 
 //service
 import { PokemonService } from '../../core/service/pokemon.service';
@@ -7,7 +8,6 @@ import { PokemonService } from '../../core/service/pokemon.service';
 //package
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokedexObj } from '../../core/model/pokedex';
 
 @Component({
   selector: 'app-home',
@@ -66,9 +66,13 @@ export class HomeComponent implements OnInit {
           }
 
           this.paginacao.pokemon_entries = this.paginacao.pokemon_entries.filter(e => e.entry_number < 896);
+
+          //this.pokemonService.generateJson(this.paginacao);
         }
 
       );
+
+
   }
 
 

@@ -1,6 +1,5 @@
-//page
-
-
+//model
+import { Pokemon } from '../../core/model/pokemon';
 
 //service
 import { PokemonService } from '../../core/service/pokemon.service';
@@ -8,8 +7,6 @@ import { PokemonService } from '../../core/service/pokemon.service';
 ///package
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Pokemon } from '../../core/model/pokemon'; 
-
 
 @Component({
   selector: 'app-pokemon-detalhe',
@@ -17,7 +14,6 @@ import { Pokemon } from '../../core/model/pokemon';
   styleUrls: ['./pokemon-detalhe.component.scss']
 })
 export class PokemonDetalheComponent implements OnInit {
-
   public pokemonId: number = 0;
   public pokemonInfo: any;
 
@@ -27,7 +23,6 @@ export class PokemonDetalheComponent implements OnInit {
     private pokemonService: PokemonService,
     private router: Router,
   ) {
-    console.log(this.pokemonInfo);
   }
 
   ngOnInit(): void {
@@ -55,18 +50,64 @@ export class PokemonDetalheComponent implements OnInit {
       .subscribe(
         (result) => {
           this.pokemonInfo = result;
+          //result.imgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + (this.pokemonInfo.id < 9 ? '00' + this.pokemonInfo.id : (this.pokemonInfo.id < 99 ? '0' + this.pokemonInfo.id : this.pokemonInfo.id)) + '.png'
+
+          this.pokemonService.getFromUrl(this.pokemonInfo.forms[0].url)
+            .subscribe(
+              (form) => {
+                this.pokemonInfo.forms[0].form = form
+              }
+            );
+
+          this.pokemonService.getFromUrl(this.pokemonInfo.location_area_encounters)
+            .subscribe(
+              (location) => {
+                this.pokemonInfo.location_area_encounters = location
+              }
+            );
+
+          this.pokemonService.getFromUrl(this.pokemonInfo.location_area_encounters)
+            .subscribe(
+              (location) => {
+                this.pokemonInfo.location_area_encounters = location
+
+                //console.log(this.pokemonInfo);
+                for (let i = 0; i < this.pokemonInfo.location_area_encounters.length; i++) {
+                  this.pokemonService.getFromUrl(this.pokemonInfo.location_area_encounters[i].location_area.url)
+                    .subscribe(
+                      (locationEncounter) => {
+                        this.pokemonInfo.location_area_encounters[i].location_area.data = locationEncounter;
+                      }
+                    );
+
+                  for (let j = 0; j < this.pokemonInfo.location_area_encounters[i].version_details.length; j++) {
+                    for (let k = 0; k < this.pokemonInfo.location_area_encounters[i].version_details[j].encounter_details.length; k++) {
+                      this.pokemonService.getFromUrl(this.pokemonInfo.location_area_encounters[i].version_details[j].encounter_details[k].method.url)
+                        .subscribe(
+                          (encounterMethod) => {
+                            this.pokemonInfo.location_area_encounters[i].version_details[j].encounter_details[k].method.data = encounterMethod;
+                          }
+                        );
+                    }
+                  }
+                }
+              }
+            );
+
+
+
           console.log(this.pokemonInfo);
-          this.pokemonInfo.imgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + (this.pokemonInfo.id < 9 ? '00' + this.pokemonInfo.id : (this.pokemonInfo.id < 99 ? '0' + this.pokemonInfo.id : this.pokemonInfo.id )) + '.png'
+          //this.pokemonService.generateJson(this.pokemonInfo);
         }
-
       );
-
-
   }
+
+  logResult() {
+  }
+
 
   exibirTipoInfo(url: string) {
     console.log(url);
-
   }
 
   voltar() {

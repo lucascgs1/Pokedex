@@ -2,4 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Pokedex.Web/obj/Release/netcoreapp3.1
+/Pokedex.Web/obj
+/Pokedex.Web/bin
+/.vs
