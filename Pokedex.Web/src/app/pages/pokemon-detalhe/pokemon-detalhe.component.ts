@@ -41,7 +41,7 @@ export class PokemonDetalheComponent implements OnInit {
         //if (this.orcamentoId > 0)
         //  this.getOrcamento(null);
         //else {
-        //  console.error("Orçamento não informado!");
+        //  console.error("Or�amento n�o informado!");
         //  this.navCtrl.back();
         //  return;
         //}
@@ -61,7 +61,26 @@ export class PokemonDetalheComponent implements OnInit {
 
       );
 
+                  for (const version of item.version_details) {
+                    for (const encounter of version.encounter_details) {
+                      this.pokemonService.getFromUrl(encounter.method.url)
+                        .subscribe(
+                          (encounterMethod) => {
+                            encounter.method.data = encounterMethod;
+                          }
+                        );
+                    }
+                  }
+                }
 
+              }
+            );
+        }
+      );
+  }
+
+  logResult(): void {
+    console.log(this.pokemonInfo)
   }
 
   exibirTipoInfo(url: string) {
