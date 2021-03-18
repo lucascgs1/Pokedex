@@ -9,13 +9,13 @@ export class Pokemon {
     this.id = 0;
     this.is_default = false;
     this.location_area_encounters = '';
-    this.moves = []
+    this.moves = [];
     this.name = '';
     this.order = 0;
     this.species = new Species();
     this.sprites = new Sprites();
-    //this.stats = [];
-    //this.types = [];
+    // this.stats = [];
+    // this.types = [];
     this.weight = 0;
     this.imgUrl = '';
   }
@@ -33,8 +33,8 @@ export class Pokemon {
   order: number;
   species: Species;
   sprites: Sprites;
-  //stats: Stat[];
-  //types: Type[];
+  // stats: Stat[];
+  // types: Type[];
   weight: number;
   imgUrl: string;
 }

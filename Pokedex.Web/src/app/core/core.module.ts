@@ -1,8 +1,8 @@
-//service
+/*service*/
 import { PokemonService } from './service/pokemon.service';
 import { StorageService } from './service/storage.service';
 
-//package
+/*package*/
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';

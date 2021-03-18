@@ -1,8 +1,8 @@
 export class Paginacao {
   constructor() {
     this.count = 0;
-    this.next = "";
-    this.previous = "";
+    this.next = '';
+    this.previous = '';
     this.results = [];
   }
   count: number;
