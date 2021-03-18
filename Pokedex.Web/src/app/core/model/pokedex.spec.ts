@@ -1,7 +1,7 @@
-import { Pokedex } from './pokedex';
+import { PokedexObj } from './pokedex';
 
 describe('Pokedex', () => {
   it('should create an instance', () => {
-    expect(new Pokedex()).toBeTruthy();
+    expect(new PokedexObj()).toBeTruthy();
   });
 });

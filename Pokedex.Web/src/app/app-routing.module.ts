@@ -1,8 +1,8 @@
-//page
+/*page*/
 import { HomeComponent } from './pages/home/home.component';
 import { PokemonDetalheComponent } from './pages/pokemon-detalhe/pokemon-detalhe.component';
 
-//package
+/*package*/
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

@@ -11,3 +11,12 @@ C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.
 C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.dll
 C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.pdb
 C:\Users\lucas\source\repos\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.genruntimeconfig.cache
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.deps.json
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.dll
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\bin\Debug\netcoreapp3.1\Pokedex.Web.pdb
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.csprojAssemblyReference.cache
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.AssemblyInfoInputs.cache
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.AssemblyInfo.cs
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.csproj.CoreCompileInputs.cache
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.dll
+D:\Dev\Portfolio\Pokedex\Pokedex.Web\obj\Debug\netcoreapp3.1\Pokedex.Web.pdb

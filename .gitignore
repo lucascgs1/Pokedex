@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Pokedex.Web/obj
+/Pokedex.Web/bin
+/.vs
+.vs/Pokedex/v16/.suo
+.vs/Pokedex/v16/.suo

@@ -1,13 +1,14 @@
-//page
+/*page*/
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
 
-//module
+/*module*/
 import { MaterialModule } from './material-module/material-module.module';
 
-//package
+/*package*/
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -17,11 +18,17 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   exports: [
     MaterialModule,
     SideMenuComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    SweetAlert2Module,
   ]
-
 })
+
 export class SharedModule { }

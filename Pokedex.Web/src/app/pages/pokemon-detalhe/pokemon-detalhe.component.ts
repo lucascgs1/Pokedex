@@ -1,15 +1,12 @@
-//page
+/*model*/
+import { Pokemon } from '../../core/model/pokemon';
 
-
-
-//service
+/*service*/
 import { PokemonService } from '../../core/service/pokemon.service';
 
-///package
+/*package*/
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Pokemon } from '../../core/model/pokemon'; 
-
 
 @Component({
   selector: 'app-pokemon-detalhe',
@@ -17,8 +14,7 @@ import { Pokemon } from '../../core/model/pokemon';
   styleUrls: ['./pokemon-detalhe.component.scss']
 })
 export class PokemonDetalheComponent implements OnInit {
-
-  public pokemonId: number = 0;
+  public pokemonId = 0;
   public pokemonInfo: any;
 
 
@@ -27,39 +23,47 @@ export class PokemonDetalheComponent implements OnInit {
     private pokemonService: PokemonService,
     private router: Router,
   ) {
-    console.log(this.pokemonInfo);
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(
-      (params) => {
-        this.pokemonId = params["id"];
+    this.activatedRoute.params
+      .subscribe(
+        (params) => {
+          this.pokemonId = params['id'];
 
-
-        this.getPokemonDetalhes(this.pokemonId);
-        console.log(this.pokemonId);
-        //if (this.orcamentoId > 0)
-        //  this.getOrcamento(null);
-        //else {
-        //  console.error("Or�amento n�o informado!");
-        //  this.navCtrl.back();
-        //  return;
-        //}
-      });
+          if (this.pokemonId > 0) {
+            this.getPokemonDetalhes(this.pokemonId);
+          }
+        });
   }
 
 
-  getPokemonDetalhes(id: number) {
+  getPokemonDetalhes(id: number): void {
     console.log(id);
     this.pokemonService.getPokemonDetalhes(id)
       .subscribe(
         (result) => {
           this.pokemonInfo = result;
-          console.log(this.pokemonInfo);
-          this.pokemonInfo.imgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + (this.pokemonInfo.id < 9 ? '00' + this.pokemonInfo.id : (this.pokemonInfo.id < 99 ? '0' + this.pokemonInfo.id : this.pokemonInfo.id )) + '.png'
-        }
 
-      );
+          this.pokemonService.getFromUrl(this.pokemonInfo.forms[0].url)
+            .subscribe(
+              (form) => {
+                this.pokemonInfo.forms[0].form = form;
+              }
+            );
+
+          this.pokemonService.getFromUrl(this.pokemonInfo.location_area_encounters)
+            .subscribe(
+              (location) => {
+                this.pokemonInfo.location_area_encounters = location;
+
+                for (const item of this.pokemonInfo.location_area_encounters) {
+                  this.pokemonService.getFromUrl(item.location_area.url)
+                    .subscribe(
+                      (locationEncounter) => {
+                        item.location_area.data = locationEncounter;
+                      }
+                    );
 
                   for (const version of item.version_details) {
                     for (const encounter of version.encounter_details) {
@@ -72,7 +76,6 @@ export class PokemonDetalheComponent implements OnInit {
                     }
                   }
                 }
-
               }
             );
         }
@@ -80,15 +83,14 @@ export class PokemonDetalheComponent implements OnInit {
   }
 
   logResult(): void {
-    console.log(this.pokemonInfo)
   }
 
-  exibirTipoInfo(url: string) {
+
+  openUrl(url: string): void {
     console.log(url);
-
   }
 
-  voltar() {
-    this.router.navigate([""])
+  voltar(): void {
+    this.router.navigate(['']);
   }
 }

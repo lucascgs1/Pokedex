@@ -1,20 +1,21 @@
-//model
+/*model*/
 import { Paginacao } from '../model/paginacao';
 import { Pokemon } from '../model/pokemon';
-import { Pokedex } from '../model/pokedex';
+import { PokedexObj } from '../model/pokedex';
 
-//module
+/*module*/
 import { environment } from '../../../environments/environment';
 
-//service
+/*service*/
 import { StorageService } from './storage.service';
 
-//package
+/*package*/
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { retry, catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { saveAs } from 'file-saver';
 
 export class ResultApi {
   constructor() {
@@ -40,106 +41,59 @@ export class PokemonService {
 
   // Headers
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
   // Obtem todos os pokemons
   getPokemons(page: number = 0, limit: number = 0): Observable<Paginacao> {
-
-    var url = environment.endPoints.Pokemon;
-
-    console.log(page, limit);
+    let url = environment.endPoints.Pokemon;
 
     if (limit > 0 && page > 0) {
       url = url + '?offset=' + ((page * limit) - limit) + '&limit=' + limit;
     }
-    console.log(url);
 
     return this.httpClient.get<Paginacao>(url)
       .pipe(
         retry(2),
-        catchError(this.handleError))
+        catchError(this.handleError));
   }
 
-  getAllPokemons(tipo: number = 1): Observable<Pokedex> {
+  getAllPokemons(tipo: number = 1): Observable<PokedexObj> {
 
-    var url = environment.endPoints.Pokedex + tipo;
-
-
-    console.log(url);
-
-    return this.httpClient.get<Pokedex>(url)
-      .pipe(
-        retry(2),
-        catchError(this.handleError))
-  }
-
-  //detalhes do pokemon
-  getPokemonDetalhes(id: number): Observable<Pokemon> {
-
-    var url = environment.endPoints.Pokemon + id;
-
-    //return this.httpClient.get<Pokemon>(url)
-    //    .pipe(
-    //      retry(2),
-    //      catchError(this.handleError));
-
-    console.log(url)
-    //var data = this.storageService.getData(url);
-
-    //if (data != null)
-    //  return new Observable(observer => {
-    //    observer.next(data);
-    //    observer.complete();
-    //  });
-    
-
-    return this.httpClient.get<Pokemon>(url)
+    return this.httpClient.get<PokedexObj>(environment.endPoints.Pokedex + tipo)
       .pipe(
         retry(2),
         catchError(this.handleError));
-        //map(message => {
-        //  return this.handleSuccessMessages(message, true, cache, this.getCacheKey(serviceName, url), cacheAge);
-        //  ),
+  }
 
-        //map(result =>  return this.handleSuccessMessages(result),
+  // detalhes do pokemon
+  getPokemonDetalhes(id: number): Observable<Pokemon> {
 
+    return this.httpClient.get<Pokemon>(environment.endPoints.Pokemon + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
 
+  }
 
+  getFromUrl(url: string): Observable<any> {
 
-    //return this.httpClient.get<Pokemon>(url, options)
-    //  .pipe
+    return this.httpClient.get<any>(url)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
 
+  }
 
-    //.map(message => {
-    //  return this.handleSuccessMessages(message, true, cache, this.getCacheKey(serviceName, url), cacheAge);
-    //})
-    //.catch(message => {
-    //  return this.handleError(message, hideNoBusinessErrors);
-    //});
+  generateJson(teste: any): void {
+    const blob = new Blob([JSON.stringify(teste)], { type: 'application/json' });
+
+    saveAs(blob, 'abc.json');
   }
 
 
-
-  //public handleSuccessMessages(message: Response, cacheKey: string = '', cacheAge?: number): ResultApi {
-  //  let result: ResultApi = message.json();
-
-  //  if (result.sucesso) {
-  //    if (cache)
-  //      this.storageService.setData(cacheKey, result);
-
-  //    return result;
-  //  }
-
-  //  return result;
-  //}
-
-
-
-
-
   // Manipulação de erros
-  handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse): Observable<any> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Erro ocorreu no lado do client
@@ -150,5 +104,5 @@ export class PokemonService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
-  };
+  }
 }
