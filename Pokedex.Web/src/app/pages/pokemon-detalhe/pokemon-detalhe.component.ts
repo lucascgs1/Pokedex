@@ -83,6 +83,7 @@ export class PokemonDetalheComponent implements OnInit {
   }
 
   logResult(): void {
+    console.log(this.pokemonInfo);
   }
 
 
