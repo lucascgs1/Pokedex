@@ -1,12 +1,13 @@
 /*model*/
-import { Pokemon } from '../../core/model/pokemon';
+//import { Pokemon } from '../../core/model/pokemon';
 
 /*service*/
-import { PokemonService } from '../../core/service/pokemon.service';
+import { PokemonService } from '../../../core/services/pokemon.service';
 
 /*package*/
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pokemon-detalhe',

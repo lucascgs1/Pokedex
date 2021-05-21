@@ -6,9 +6,6 @@ import { PokedexObj } from '../model/pokedex';
 /*module*/
 import { environment } from '../../../environments/environment';
 
-/*service*/
-import { StorageService } from './storage.service';
-
 /*package*/
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -16,6 +13,7 @@ import { retry, catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { saveAs } from 'file-saver';
+import { HttpClientService } from './util/http-client.service';
 
 export class ResultApi {
   constructor() {
@@ -36,7 +34,7 @@ export class PokemonService {
 
   constructor(
     private httpClient: HttpClient,
-    private storageService: StorageService
+    private _http: HttpClientService,
   ) { }
 
   // Headers
@@ -52,37 +50,24 @@ export class PokemonService {
       url = url + '?offset=' + ((page * limit) - limit) + '&limit=' + limit;
     }
 
-    return this.httpClient.get<Paginacao>(url)
-      .pipe(
-        retry(2),
-        catchError(this.handleError));
+    return this._http.get<any>({ url,  cacheMins: 5 })
   }
 
   getAllPokemons(tipo: number = 1): Observable<PokedexObj> {
 
-    return this.httpClient.get<PokedexObj>(environment.endPoints.Pokedex + tipo)
-      .pipe(
-        retry(2),
-        catchError(this.handleError));
+    return this._http.get<PokedexObj>({ url: environment.endPoints.Pokedex + tipo,  cacheMins: 5 })
   }
 
   // detalhes do pokemon
   getPokemonDetalhes(id: number): Observable<Pokemon> {
 
-    return this.httpClient.get<Pokemon>(environment.endPoints.Pokemon + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError));
+    return this._http.get<Pokemon>({ url: environment.endPoints.Pokemon + id,  cacheMins: 5 })
 
   }
 
   getFromUrl(url: string): Observable<any> {
 
-    return this.httpClient.get<any>(url)
-      .pipe(
-        retry(2),
-        catchError(this.handleError));
-
+    return this._http.get<any>({ url: url, cacheMins: 5 })
   }
 
   generateJson(teste: any): void {
@@ -90,7 +75,6 @@ export class PokemonService {
 
     saveAs(blob, 'abc.json');
   }
-
 
   // Manipulação de erros
   handleError(error: HttpErrorResponse): Observable<any> {

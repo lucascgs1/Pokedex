@@ -1,21 +1,18 @@
-/*page*/
-import { HomeComponent } from './pages/home/home.component';
-import { PokemonDetalheComponent } from './pages/pokemon-detalhe/pokemon-detalhe.component';
-
-/*package*/
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadChildren: () => import('./pages/pokemon/pokemon.module')
+      .then(m => m.PokemonModule)
   },
   {
-    path: 'pokemon-detalhe/:id',
-    component: PokemonDetalheComponent
+    path: 'pokemon/:id',
+    loadChildren: () => import('./pages/pokemon/pokemon.module')
+      .then(m => m.PokemonModule)
   },
+
 ];
 
 @NgModule({

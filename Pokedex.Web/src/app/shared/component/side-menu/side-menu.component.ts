@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SideMenuComponent implements OnInit {
   public itemMenu: any[] = [];
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

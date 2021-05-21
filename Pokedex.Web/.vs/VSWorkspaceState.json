@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\pokemon",
+    "\\src\\app\\pages\\pokemon\\index",
+    "\\src\\app\\pages\\pokemon\\pokemon-detalhe",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\component",
+    "\\src\\app\\shared\\component\\card-pokemon"
+  ],
+  "SelectedNode": "\\src\\app\\shared\\component\\card-pokemon",
+  "PreviewInSolutionExplorer": false
+}

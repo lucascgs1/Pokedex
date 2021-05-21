@@ -79,6 +79,3 @@ export class PokemonSpecies {
   url: string;
   imgUrl: string;
 }
-
-
-

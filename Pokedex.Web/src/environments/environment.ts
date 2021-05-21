@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   endPoints: {
+    usuario: 'https://pokemanosapi20210329164501.azurewebsites.net/api/usuario',
+    conta: 'https://pokemanosapi20210329164501.azurewebsites.net/api/account',
     Pokedex: 'https://pokeapi.co/api/v2/pokedex/',
     Berry: 'https://pokeapi.co/api/v2/berry/',
     BerryFirmness: 'https://pokeapi.co/api/v2/berry-firmness/',
@@ -50,7 +52,6 @@ export const environment = {
     PokemonSpecie: 'https://pokeapi.co/api/v2/pokemon-species/',
     PokemonStat: 'https://pokeapi.co/api/v2/stat/',
     PokemonType: 'https://pokeapi.co/api/v2/type/',
-
   }
 };
 

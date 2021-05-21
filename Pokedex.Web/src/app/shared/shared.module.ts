@@ -1,34 +1,34 @@
-/*page*/
-import { SideMenuComponent } from './component/side-menu/side-menu.component';
+// module
+import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-/*module*/
-import { MaterialModule } from './material-module/material-module.module';
-
-/*package*/
+// package
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { SideMenuComponent } from './component/side-menu/side-menu.component';
+import { NavMenuComponent } from './component/nav-menu/nav-menu.component';
+//import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
-  declarations: [
-    SideMenuComponent
+  declarations: [  
+    SideMenuComponent,
+    NavMenuComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot(),
+    //SweetAlert2Module.forRoot(),
   ],
   exports: [
     MaterialModule,
-    SideMenuComponent,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module,
+    SideMenuComponent, 
+    NavMenuComponent,
+    //SweetAlert2Module,
   ]
 })
-
 export class SharedModule { }
